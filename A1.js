@@ -16,9 +16,7 @@ const {
 //   YOUR WORK STARTS BELOW    //
 /////////////////////////////////
 
-// Initialize uniform
-//const orbPosition = { type: 'v3', value: new THREE.Vector3(0.0, 1.0, 0.0) };
-
+// Initialize uniforms
 let time = { type: 'f', value: 0.0 };
 let spottime = { type: 'f', value: 0.0 };
 let R = { type: 'f', value: 20.0 };
@@ -61,7 +59,6 @@ const shaderFiles = [
 ];
 
 new THREE.SourceLoader().load(shaderFiles, function (shaders) {
-
   torusMaterial.vertexShader = shaders['glsl/torus.vs.glsl'];
   torusMaterial.fragmentShader = shaders['glsl/torus.fs.glsl'];
 });
@@ -69,6 +66,7 @@ new THREE.SourceLoader().load(shaderFiles, function (shaders) {
 const size = 8; // Number of gradient steps
 const colors = new Uint8Array(size);
 
+//
 // Define colors in the array (green to blue gradient)
 // Uint8Array requires values between 0-255 (representing color intensities)
 colors[0] = 0;    // dark green (0, 255, 0) - fully green
@@ -77,7 +75,7 @@ colors[2] = 128;  // equal green and blue
 colors[3] = 192;  // more blue, less green
 colors[4] = 255;  // fully blue (0, 0, 255)
 
-// 2. Create a DataTexture using the colors array
+// Create a DataTexture using the colors array
 const gradientMap = new THREE.DataTexture(colors, size, 1, THREE.LuminanceFormat);
 
 mat = new THREE.MeshToonMaterial({
@@ -87,6 +85,8 @@ mat = new THREE.MeshToonMaterial({
 
 let mixer;  // Declare the animation mixer
 let plane;
+
+
 
 //load plane
 const gltfLoader = new THREE.GLTFLoader();
@@ -132,8 +132,8 @@ scene.add(light);
 
 
 
-let p = 1.0;
-let q = 4.0;
+let p = 3.0;
+let q = 2.0;
 
 
 const dashMaterial = new THREE.LineDashedMaterial({
@@ -193,10 +193,10 @@ updatePath();
 // FOR USER INPUTS OF P AND Q
 const gui = new dat.GUI();
 
-// Add controls for phi and theta
+// Add controls for p and q
 const controls = {
-  p: 1.0,
-  q: 4.0
+  p: p,
+  q: q
 };
 
 //update title
@@ -206,17 +206,19 @@ function updateTitle() {
   // Update the content inside the div
     titleElement.innerHTML = ` (${p}, ${q})-torus knot`;
 
-    if ((p == 3.0 && q == 2.0)) {
-      const knotElement = document.querySelector('.knot-title');
+  //   if ((p == 3.0 && q == 2.0)) {
+  //     const knotElement = document.querySelector('.knot-title');
 
-  // Update the content inside the div
-    knotElement.innerHTML = `TREFOIL`;
-    } else {
-      const knotElement = document.querySelector('.knot-title');
-      knotElement.innerHTML = ``;
-    }
+  // // Update the content inside the div
+  //   knotElement.innerHTML = `TREFOIL`;
+  //   } else {
+  //     const knotElement = document.querySelector('.knot-title');
+  //     knotElement.innerHTML = ``;
+  //   }
   
 }
+
+
 
 //draw projection
 function draw2DProjection(p, q) {
@@ -282,6 +284,7 @@ gui.add(controls, 'q', 0, 10, step).name('q').onChange(function(value) {
 
 
 updateTitle();
+draw2DProjection(p, q);
 
   // PLANE MOVEMENT
 function planeMovement() {
@@ -353,6 +356,7 @@ function update() {
   dashMaterial.needsUpdate = true;
 
   updateTitle();
+
 
   // Requests the next update call, this creates a loop
   requestAnimationFrame(update);
