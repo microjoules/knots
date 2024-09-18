@@ -1,0 +1,83 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>CPSC 314 Assignment 1 2024WT1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Latin+Modern+Roman&display=swap" rel="stylesheet">
+  
+
+  <style>
+    body {
+      /* Remove the default padding and margin around the canvas */
+      padding: 0;
+      margin: 0;
+      /* Disable scrolling */
+      overflow: hidden;
+    }
+
+    /* Style for the title text */
+    .scene-title {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgb(107, 158, 114);
+      font-size: 30px;
+      font-family: 'Latin Modern Roman', serif;
+      z-index: 10; /* Ensure the title is above the canvas */
+    }
+
+    /* Style for the title text */
+    .sub-title {
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgb(107, 158, 114);
+      font-size: 24px;
+      font-family: 'Latin Modern Roman', serif;
+      z-index: 10; /* Ensure the title is above the canvas */
+    }
+
+    /* Style for the title text */
+    .knot-title {
+      position: absolute;
+      top: 130px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgb(107, 158, 114);
+      font-size: 20px;
+      font-family: 'Latin Modern Roman', serif;
+      z-index: 10; /* Ensure the title is above the canvas */
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="sub-title">(p, q)-torus knot </div>
+
+  <div class="knot-title"></div>
+  <div class="scene-title">Mathematical Knots on a Torus</div>
+
+  <div class="projection-container" style="position: absolute; top: 10px; right: 1000px; z-index: 1000;">
+    <canvas id="knotCanvas" width="200" height="200" style="border:1px solid rgb(160, 243, 174);"></canvas>
+  </div>
+
+  <canvas id="webglcanvas"></canvas>
+  <script src="js/WebGL.js"></script>
+  <script src="js/three.min.js"></script>
+  <script src="js/OBJLoader.js"></script>
+  <script src="js/fflate.min.js"></script>
+  <script src="js/FBXLoader.js"></script>
+  <script src="js/GLTFLoader.js"></script>
+  <script src="js/SourceLoader.js"></script>
+  <script src="js/OrbitControls.js"></script>
+  <script src="js/KeyboardState.js"></script> <!-- By Jerome Etienne: http://jetienne.com/ -->
+  <script src="js/setup.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.6/dat.gui.min.js"></script>
+  <script src="https://unpkg.com/three-substance@latest/dist/three-substance.min.js"></script>
+  <script src="A1.js"></script>
+</body>
+
+</html>
