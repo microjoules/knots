@@ -290,7 +290,7 @@ const tangent = new THREE.Vector3()
       scene.add(arrowHelper);
     }
     
-    addArrow(origin, up.multiplyScalar(-1.0), 5, 0xff0000);   // Red for tangent
+    //addArrow(origin, up.multiplyScalar(-1.0), 5, 0xff0000);   // Red for tangent
     //addArrow(plane.position.copy(parametricMovement), tangent.multiplyScalar(-1.0), 5, 0x00ff00);    // Green for normal
     //addArrow(plane.position.copy(parametricMovement), side, 5, 0x0000ff); 
   }
